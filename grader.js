@@ -40,11 +40,11 @@ var assertFileExists = function(infile) {
 
 var assertUrlExists = function(infile) {
     var instr = infile.toString();
-    if(!fs.existsSync(instr)) {
-        console.log("%s does not exist. Exiting.", instr);
-        process.exit(1); // http://nodejs.org/api/process.html#process_process_\
-exit_code
-    }
+    //if(!fs.existsSync(instr)) {
+    //    console.log("%s does not exist. Exiting.", instr);
+    //   process.exit(1); // http://nodejs.org/api/process.html#process_process//_\
+//exit_code
+//    }
     return instr;
 };
 
@@ -53,7 +53,12 @@ var cheerioHtmlFile = function(htmlfile) {
 };
 
 var cheerioUrlFile = function(urlfile) {
-    rest.get(urlfile).on('complete',function(result){return cheerio.load(result)});
+    rest.get(urlfile).on('complete',function(result){
+	return fs.writeFileSync('urlindex.html',result);
+	//var urlfilevar = "urlindex.html";
+	//return cheerio.load(result)
+    });
+    
 };
 
 var loadChecks = function(checksfile) {
