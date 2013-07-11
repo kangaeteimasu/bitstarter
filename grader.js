@@ -43,7 +43,7 @@ var cheerioHtmlFile = function(htmlfile) {
 };
 
 var cheerioUrlFile = function(urlfile) {
-    rest.get(urlfile).on('complete',return cheerio.load(result));
+    rest.get(urlfile).on('complete',function(result){return cheerio.load(result)});
 };
 
 var loadChecks = function(checksfile) {
